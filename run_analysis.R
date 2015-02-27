@@ -17,8 +17,8 @@ run<-function()
      #put colname into dataframe
      result_test<-data.frame(list1)
      result_train<-data.frame(list2)
-     colnames(result_test)<-c("Subject_test",as.character(colname[,2]),"Test_labels")
-     colnames(result_train)<-c("Subject_train",as.character(colname[,2]),"Train_labels")
+     colnames(result_test)<-c("Subject",as.character(colname[,2]),"Test_labels")
+     colnames(result_train)<-c("Subject",as.character(colname[,2]),"Train_labels")
      
      
      #extract the measurement on mean
@@ -31,8 +31,8 @@ run<-function()
 
      
      #put data on mean and std together
-     result_test3<-data.frame("Subject_test"=result_test[,1],"Test_label"=result_test[,563],result_test1,result_test2)
-     result_train3<-data.frame("Subject_train"=result_train[,1],"Train_label"=result_train[,563],result_train1,result_train2)
+     result_test3<-data.frame("Subject"=result_test[,1],"label"=result_test[,563],result_test1,result_test2)
+     result_train3<-data.frame("Subject"=result_train[,1],"label"=result_train[,563],result_train1,result_train2)
      
      #drop col with name of meanFreq
      result_test4<-result_test3[,-grep("meanFreq",colnames(result_test3))]
@@ -40,10 +40,8 @@ run<-function()
      
      
      #merge train and test data set
-     result<-join(result_test4,result_train4)
+     result<-merge(result_test4,result_train4,all=TRUE)
      
-     # drop out NA col after merging  
-     result<-select(result,-(Subject_train:Train_label))
      
      
      #replace the decriptive names

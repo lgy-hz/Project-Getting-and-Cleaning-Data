@@ -22,4 +22,4 @@ merge train and test data, saved into result
 
 replace the descriptive labels
 
-write the data frame into .txt Li
+write the data frame into .txt
